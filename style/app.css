@@ -1,0 +1,528 @@
+:root {
+    --primary-color: #007bff;
+    --dark-color: #343a40;
+    --light-bg: #f8f9fa;
+    --padding-section: 60px 0; /* Default padding for sections */
+    --navbar-height: 56px; /* Define navbar height as a variable */
+}
+
+/* Base styles for the body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding-top: var(--navbar-height); /* Ensure content starts below fixed navbar */
+    color: var(--dark-color);
+    /* Removed overflow-y: hidden; to allow natural scrolling on all devices */
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+    margin: 0; /* Memastikan tidak ada margin default dari browser */
+}
+
+/* Universal section styling for anchor linking and general padding */
+section {
+    padding: 80px 15px; /* Default padding for all sections, menambahkan padding horizontal */
+    /* Adjusting padding-top and margin-top for consistent scrolling behavior
+        when navigating via anchor links, considering the fixed navbar. */
+    padding-top: calc(80px + var(--navbar-height)); /* Menyesuaikan padding atas agar konten tidak tersembunyi di bawah navbar */
+    margin-top: calc(-1 * var(--navbar-height)); /* Negative margin untuk menarik konten ke atas */
+    scroll-margin-top: var(--navbar-height); /* Essential for smooth anchor linking, matches navbar height */
+    box-sizing: border-box; /* Memastikan padding dan border termasuk dalam total lebar/tinggi elemen */
+    width: 100%; /* Memastikan section mengambil lebar penuh */
+}
+
+/* Specific adjustments for the home/hero section */
+#home {
+    padding-top: var(--navbar-height); /* Dimulai tepat di bawah navbar */
+    margin-top: 0; /* No negative margin for the hero section to keep it at the top */
+    min-height: calc(100vh - var(--navbar-height)); /* Memastikan hero section mengambil sisa tinggi viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 15px; /* Menambahkan padding horizontal untuk hero section */
+    padding-right: 15px;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    min-height: var(--navbar-height); /* Use the variable for min-height */
+    position: fixed; /* Ensure navbar stays at the top */
+    width: 100%; /* Make navbar span full width */
+    top: 0;
+    left: 0;
+    z-index: 1030; /* Higher z-index to be above other content */
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.8rem; /* Using rem for better scalability */
+    color: var(--primary-color) !important;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem 0.75rem; /* Standard Bootstrap toggler padding */
+    font-size: 1.25rem; /* Standard Bootstrap toggler font size */
+    line-height: 1;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Focus outline for accessibility */
+}
+
+.navbar-nav .nav-link {
+    color: var(--primary-color) !important;
+    font-weight: 500;
+    margin: 0 10px; /* Adjust margin for spacing */
+    transition: color 0.3s ease;
+    padding: 0.5rem 0; /* Adjust vertical padding for nav links */
+}
+
+/* On larger screens, ensure nav links are spaced correctly */
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        margin: 0 15px; /* More spacing on desktop */
+    }
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3 !important;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(to right, #e0f2f7, #c1e7ff);
+    min-height: calc(100vh - var(--navbar-height)); /* Adjust for navbar height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--dark-color);
+    padding: var(--padding-section); /* Use custom property for consistent padding */
+    /* Padding atas dan bawah sudah diatur oleh section default, ini bisa dihapus jika tidak ada kebutuhan khusus */
+    /* padding-top: calc(var(--padding-section) + 50px); */
+    /* padding-bottom: calc(var(--padding-section) + 50px); */
+}
+
+.hero-section .container {
+    display: flex;
+    flex-direction: column; /* Mengatur item dalam kolom (foto di atas nama) */
+    align-items: center; /* Memusatkan item di dalam container */
+    justify-content: center; /* Memusatkan item secara vertikal di dalam container */
+    width: 100%; /* Memastikan container mengambil lebar penuh */
+    padding-left: 15px; /* Menambahkan padding horizontal pada container hero */
+    padding-right: 15px;
+    box-sizing: border-box; /* Memastikan padding termasuk dalam lebar */
+}
+
+.hero-section .profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-width: 80%; /* Menyesuaikan ukuran gambar untuk layar yang sangat kecil */
+}
+
+.hero-section h1 {
+    font-size: 3rem; /* Using rem for better scalability */
+    font-weight: 700;
+    margin-bottom: 0.5rem; /* Use rem for spacing */
+    color: var(--primary-color);
+    word-break: break-word; /* Mencegah teks panjang melebihi batas container */
+}
+
+.hero-section .lead {
+    font-size: 1.5rem; /* Using rem for better scalability */
+    margin-bottom: 2rem; /* Use rem for spacing */
+}
+
+.hero-section .btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 12px 30px;
+    font-size: 1.1rem; /* Using rem for better scalability */
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    width: auto; /* Memastikan tombol tidak selalu mengambil 100% lebar */
+    max-width: 100%; /* Agar tombol tidak melebihi lebar container pada layar kecil */
+}
+
+.hero-section .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+/* Section Padding and Titles */
+.section-title {
+    font-size: 2.5rem; /* Using rem for better scalability */
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 3rem; /* Use rem for spacing */
+    position: relative;
+    padding-bottom: 15px;
+    word-break: break-word; /* Mencegah teks panjang melebihi batas container */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* About Section */
+#about .text-center {
+    font-size: 1.1rem; /* Using rem for better scalability */
+    margin-bottom: 30px;
+}
+
+#about h3 {
+    font-size: 1.8rem; /* Using rem for better scalability */
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 40px;
+}
+
+#about .list-group-item {
+    border: none;
+    padding: 15px 0;
+    font-size: 1.1rem; /* Using rem for better scalability */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */ /* Ini bisa menyebabkan masalah layout di layar kecil */
+    background-color: transparent;
+}
+
+#about .list-group-item i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.3rem; /* Using rem for better scalability */
+}
+
+#about .card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.75rem; /* Using rem for better scalability */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+#about .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+#about .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.3rem; /* Using rem for better scalability */
+}
+
+#about .card-subtitle {
+    font-size: 0.9rem; /* Using rem for better scalability */
+}
+
+#about .progress {
+    height: 25px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+#about .progress-bar {
+    background-color: var(--primary-color);
+    font-weight: 600;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Portfolio Section */
+#portfolio .card {
+    border: none;
+    border-radius: 1rem; /* Using rem for better scalability */
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+#portfolio .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+#portfolio .card-img-top {
+    height: 250px; /* Consider using vw for more fluid resizing */
+    object-fit: cover;
+    width: 100%; /* Memastikan gambar mengisi lebar card */
+}
+
+#portfolio .card-body {
+    padding: 25px;
+}
+
+#portfolio .card-title {
+    font-size: 1.4rem; /* Using rem for better scalability */
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+#portfolio .card-text {
+    font-size: 0.95rem; /* Using rem for better scalability */
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#portfolio .btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 50px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+#portfolio .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Testimonial Section */
+#testimonial .carousel-item {
+    padding: 40px 20px;
+}
+
+#testimonial .rounded-circle {
+    border-color: var(--primary-color) !important;
+}
+
+#testimonial .lead {
+    font-size: 1.3rem; /* Using rem for better scalability */
+    color: #444;
+    margin-top: 20px;
+}
+
+#testimonial .blockquote-footer {
+    font-size: 0.9rem; /* Using rem for better scalability */
+    border-radius: 5px;
+    color: #ffffff; /* Ini sepertinya salah, seharusnya warna teks, bukan warna background */
+    background-color: var(--primary-color); /* Menambahkan background untuk footer testimoni */
+    padding: 5px 10px; /* Memberi sedikit padding */
+    display: inline-block; /* Agar background hanya selebar teks */
+}
+
+#testimonial .text-warning .fas {
+    color: #ffc107;
+    font-size: 1.2rem; /* Using rem for better scalability */
+}
+
+#testimonial .carousel-control-prev-icon,
+#testimonial .carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 15px;
+    opacity: 0.8;
+}
+
+/* Contact Section */
+#contact form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 1rem; /* Using rem for better scalability */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+#contact .form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#contact .form-control {
+    border-radius: 0.5rem; /* Using rem for better scalability */
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+}
+
+#contact .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+#contact .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem; /* Using rem for better scalability */
+    transition: all 0.3s ease;
+    width: auto; /* Memastikan tombol tidak selalu mengambil 100% lebar */
+    max-width: 100%; /* Agar tombol tidak melebihi lebar container pada layar kecil */
+}
+
+#contact .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#contact .social-icons a {
+    color: var(--primary-color);
+    margin: 0 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#contact .social-icons a:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 30px 15px; /* Menambahkan padding horizontal */
+    font-size: 0.9rem; /* Using rem for better scalability */
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+footer i {
+    margin: 0 5px;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Small devices (phones, 576px and below) */
+@media (max-width: 575.98px) {
+    .navbar-brand {
+        font-size: 1.5rem; /* Smaller font for brand on small screens */
+    }
+
+    .hero-section h1 {
+        font-size: 2rem; /* Adjust heading size for smaller screens */
+    }
+
+    .hero-section .lead {
+        font-size: 1.1rem; /* Adjust lead text size */
+    }
+
+    .hero-section .profile-img {
+        width: 100px; /* Ukuran gambar yang lebih kecil */
+        height: 100px;
+        margin-bottom: 15px; /* Kurangi margin bawah */
+    }
+
+    .hero-section .btn {
+        padding: 10px 25px; /* Ukuran tombol lebih kecil */
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem; /* Adjust section title size */
+        margin-bottom: 2rem; /* Reduce margin */
+    }
+
+    section {
+        padding: 50px 15px; /* Reduce horizontal padding on small screens */
+        padding-top: calc(50px + var(--navbar-height)); /* Adjust for navbar */
+    }
+
+    #contact form {
+        padding: 20px; /* Reduce form padding */
+    }
+
+    #about .list-group-item {
+        justify-content: flex-start; /* Align list items to start on small screens */
+        text-align: left;
+    }
+
+    #portfolio .card-img-top {
+        height: 200px; /* Kurangi tinggi gambar portfolio */
+    }
+
+    #testimonial .carousel-item {
+        padding: 20px 10px; /* Kurangi padding testimoni */
+    }
+
+    #testimonial .lead {
+        font-size: 1.1rem;
+    }
+}
+
+/* Medium devices (tablets, 576px and up to 767.98px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1.3rem;
+    }
+
+    .hero-section .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    section {
+        padding: 70px 25px; /* Slightly more padding than small screens */
+        padding-top: calc(70px + var(--navbar-height));
+    }
+}
+
+/* Large devices (desktops, 768px and up to 991.98px) - iPads/small laptops */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .hero-section h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1.4rem;
+    }
+
+    section {
+        padding: 80px 30px; /* Menyesuaikan padding untuk layar yang lebih besar */
+        padding-top: calc(80px + var(--navbar-height));
+    }
+}
+
+/* Extra large devices (large desktops, 992px and up) */
+@media (min-width: 992px) {
+    /* Gaya default Anda sudah cukup baik untuk ukuran ini. */
+    section {
+        padding: 80px 0; /* Menggunakan padding default tanpa horizontal padding tambahan jika container sudah mengatur lebarnya */
+        padding-top: calc(80px + var(--navbar-height));
+    }
+
+    .navbar-nav .nav-link {
+        margin: 0 20px; /* Tambah jarak antar link navigasi */
+    }
+}
